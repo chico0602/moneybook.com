@@ -141,5 +141,5 @@ STATICFILES_DIRS = (
 #ログイン
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = '/'
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '707077513636-7vjfklp33i151bvdohoo8u4tarfbnr0r.apps.googleusercontent.com'  # クライアントID
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '0JGdg1MeP1kHqBOnd2ftu6Md' # クライアント シークレット
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '#####'  # クライアントID
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '######' # クライアント シークレット

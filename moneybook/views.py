@@ -21,6 +21,7 @@ class SpendingCreate(generic.CreateView):
     success_url = reverse_lazy('moneybook:input')
     
     
+    
 #履歴
 class SpendingList(generic.ListView):
     model = Spending
