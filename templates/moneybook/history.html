@@ -1,0 +1,27 @@
+{% extends 'moneybook/base.html' %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+{% block title %}履歴{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <a class="btn btn-info col-sm-2" href="{% url 'moneybook:input' %}" role="button">入力</a>
+    <h1>履歴</h1>
+    {% for spending in spending_list %}
+    <div class="row">
+        <div class="col-md-2 label">{{ spending.useday|date:"n/j" }}</div>
+        <div class="col-md-10">
+            <div class="card" style="padding: 0.5rem 1rem;">
+            <p class="card-text">￥{{ spending.money }}</p>
+            <p class="card-text">カテゴリ:{{ spending.get_s_category_display}} 
+                メモ:{{ spending.note }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    
+</div> 
+
+{% endblock content %}

@@ -1,0 +1,47 @@
+.title{
+  font-size: 32px;
+}
+.cate {
+  padding-top: 5rem;
+}
+.row {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.label {
+  text-align: right;
+}
+
+.analysis_cate {
+  text-align: center;
+  padding-top: 2rem;
+}
+.card {
+  width: 70%;
+}
+.errorlist{
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  color: red;
+}
+
+input, select, textarea {
+  padding: 0.3rem 0.5rem; 
+  font-size: 1rem;
+  border-radius: 3px; 
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+}
+
+input:focus, select:focus, textarea:focus {
+  border: 1px solid #33CCFF;
+  box-shadow: 0 0 3px 0 rgba(51,204,255,1);
+  z-index: 10;
+  outline: 0;
+}
+
+textarea {
+  max-width: 20rem;
+  max-height: 2.5rem;
+}
