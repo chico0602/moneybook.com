@@ -1,5 +1,8 @@
+
+/*フォーム*/
 .title{
-  font-size: 32px;
+  font-size: 2rem;
+  padding: 0.5rem 0 0 0.5rem;
 }
 .cate {
   padding-top: 5rem;
@@ -7,6 +10,7 @@
 .row {
   padding-top: 1rem;
   padding-bottom: 1rem;
+  padding-left: 1.5rem;
 }
 .label {
   text-align: right;
@@ -44,4 +48,17 @@ input:focus, select:focus, textarea:focus {
 textarea {
   max-width: 20rem;
   max-height: 2.5rem;
+}
+
+/*履歴*/
+.DivLink{
+  position:relative;
+
+}
+
+.DivLink .Link{
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }

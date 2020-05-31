@@ -10,7 +10,7 @@ app_name = 'moneybook'
 urlpatterns = [
     path('', views.SpendingList.as_view(), name='history'),
     path('input/', views.SpendingCreate.as_view(), name='input'),
-   # path('input/', views.spending_create, name='spending_create'),
-   # path('create/send/', views.spending_create_send, name='spending_create_send'),
-    
+    path('s_detail/<int:pk>', views.SpendingDetail.as_view(), name='s_detail'),
+    path('s_update/<int:pk>', views.SpendingUpdate.as_view(), name='s_update'),
+    path('s_delete/<int:pk>', views.SpendingDelete.as_view(), name='s_delete'),
 ]

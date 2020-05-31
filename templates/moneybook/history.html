@@ -1,4 +1,5 @@
 {% extends 'moneybook/base.html' %}
+{% load static %}
 {% load bootstrap4 %}
 {% bootstrap_css %}
 {% bootstrap_javascript jquery='full' %}
@@ -6,17 +7,26 @@
 {% block title %}履歴{% endblock %}
 
 {% block content %}
-<div class="container-fluid">
+<div class="container-fluid" style='margin:2rem;'>
+    <div class="messages_ul">
+        {% for message in messages %}
+            <p class="alert{% if message.tags %} alert-{{ message.tags }}{% endif %} alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ message }}</p>
+        {% endfor %}
+    </div>
+    <div style="margin-bottom: 1rem;">
     <a class="btn btn-info col-sm-2" href="{% url 'moneybook:input' %}" role="button">入力</a>
+    <a class="btn btn-warning col-sm-2" href="#" role="button">分析</a>
+    </div>
     <h1>履歴</h1>
     {% for spending in spending_list %}
     <div class="row">
-        <div class="col-md-2 label">{{ spending.useday|date:"n/j" }}</div>
-        <div class="col-md-10">
-            <div class="card" style="padding: 0.5rem 1rem;">
+        <div class="col-sm-2 col-1 label">{{ spending.useday|date:"n/j" }}</div>
+        <div class="col-sm-10 col-12">
+            <div class="card border-primary" style="padding: 0.5rem 1rem; position:relative;">
             <p class="card-text">￥{{ spending.money }}</p>
             <p class="card-text">カテゴリ:{{ spending.get_s_category_display}} 
                 メモ:{{ spending.note }}</p>
+            <a style="display: block; position: absolute; width: 100%; height: 100%;" href="{% url 'moneybook:s_detail' spending.pk %}"></a>    
             </div>
         </div>
     </div>

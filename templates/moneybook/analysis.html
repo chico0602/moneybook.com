@@ -13,7 +13,7 @@
 <body>
 <div class="container">
     <div class="chart-container" height="50" width="50">
-    <canvas id="PieChart"></canvas>
+    <canvas id="MyChart"></canvas>
     </div>
     <div class="container-fluid analysis_cate">
     <p>支出：￥80000</p>
@@ -23,27 +23,11 @@
 　　</div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <script>
-    var ctx = document.getElementById("PieChart");
-    var PieChart = new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-      labels: ["食費", "光熱費", "その他"],
-      datasets: [{
-          backgroundColor: [
-              "#BB5179",
-              "#FAFF67",
-              "#58A27C",
-          ],
-          data: [20000, 10000, 50000]
-      }]
-    },
-    options: {
-      responsive: false,
-      title: {
-        display: true,
-        text: '支出'
-  }
-    }
+    $(function() {
+        $.getJSON("/api/get_summary/2017/04", function(data) {
+            var canvas = document.getElementById("myChart");
+            var chart = new Chart(canvas.getContext('2d'), data);
+        });
     });
     </script>
 </div>

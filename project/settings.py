@@ -142,4 +142,11 @@ STATICFILES_DIRS = (
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = '/'
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '#####'  # クライアントID
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '######' # クライアント シークレット
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '######'  # クライアント シークレット
+
+from django.contrib.messages import constants as messages
+
+MESSAGE_TAGS = {
+    messages.DEBUG: 'dark',
+    messages.ERROR: 'danger',
+}
