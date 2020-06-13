@@ -7,23 +7,13 @@
 {% block title %}入力画面{% endblock %}
 
 {% block content %}
-<body>
-<div class="container-fluid">
-<!--タブ部分-->
-<ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a href="#spending" data-toggle="tab" class="nav-link active">支出</a>
-  </li>
-  <li class="nav-item">
-    <a href="#income" data-toggle="tab" class="nav-link">収入</a>
-  </li>
-</ul>
-<!--内容部分-->
-<div class="tab-content">
+<div class="container" style='margin:3rem;'>
   <!--支出-->
-    <div id="spending" class="tab-pane active">
+    <div id="spending_form" class="tab-pane active">
       <form class="form" action=" " method="POST">
         <h1 class="title">支出を入力</h1>
+       
+        {{ form.non_field_errors }}
         {% csrf_token %}
         <div class="row">
           <label for="description" class="col-sm-2 label">品名:</label>
@@ -33,8 +23,8 @@
         </div>
 
         <div class="row">
-          <label for="category" class="col-sm-2 label">カテゴリ:</label>
-          <div class="col-sm-10 form-inline">
+          <label for="category" class="col-2 label">カテゴリ:</label>
+          <div class="col-10 form-inline">
             {{ form.s_category }}
         </div>
         </div>
@@ -43,13 +33,14 @@
           <label for="money" class="col-sm-2 label">金額:</label>
           <div class="col-sm-10 form-inline">
             {{ form.money }}
+            {{ form.money.errors }}
         </div>
         </div>
 
         <div class="row">
           <label for="day" class="col-sm-2 label">日付:</label>
           <div class='col-sm-10 form-inline'>
-            {{ form.useday }}
+            {{ form.date }}
           </div>
         </div>
       
@@ -69,47 +60,6 @@
         </div>
     {% endif %}
       </form>
-      </div>
-      
-      
-    
-    <!--収入-->
-    <div id="income" class="tab-pane">
-      <form class="form-horizontal">
-        <h1 class="title">収入を入力</h1>
-        <div class="row">
-          <label for="money" class="col-sm-2 label">金額</label>
-          <div class="col-sm-10 form-inline">
-          <input type="text" class="form-control" id="money" size="50">
-        </div>
-        </div>
-        <div class="row">
-          <label for="category" class="col-sm-2 label">カテゴリ</label>
-          <div class="col-sm-10 form-inline">
-          <input type="text" class="form-control" id="category" size="50">
-        </div>
-        </div>
-        <div class="row">
-          <label for="day" class="col-sm-2 label">日付</label>
-          <div class='col-sm-10 form-inline'>
-              <input type='text' class="form-control" id='datetimepicker4' size="50">
-          </div>
-          
-      </div>
-        <div class="row">
-          <label for="note" class="col-sm-2 label">メモ</label>
-          <div class="col-sm-10 form-inline">
-          <input type="text" class="form-control" id="note" size="50">
-        </div>
-        </div>
-        <button class="btn btn-info col-sm-2" type="submit" role="button">登録</button>
-      </form>
-    </div>
-    
-</div> 
+  </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  
 {% endblock content %}
