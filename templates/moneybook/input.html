@@ -7,51 +7,51 @@
 {% block title %}入力画面{% endblock %}
 
 {% block content %}
-<div class="container" style='margin:3rem;'>
+<div class="container" style='margin:3.5rem;'>
   <!--支出-->
     <div id="spending_form" class="tab-pane active">
       <form class="form" action=" " method="POST">
-        <h1 class="title">支出を入力</h1>
+        <h1 class="title" style="text-align: center;">支出を入力</h1>
        
         {{ form.non_field_errors }}
         {% csrf_token %}
         <div class="row">
-          <label for="description" class="col-sm-2 label">品名:</label>
-          <div class="col-sm-10 form-inline">
+          <label for="description" class="col-sm-4 label">品名:</label>
+          <div class="col-sm-8 form-inline">
             {{ form.description }}
         </div>
         </div>
 
         <div class="row">
-          <label for="category" class="col-2 label">カテゴリ:</label>
-          <div class="col-10 form-inline">
+          <label for="category" class="col-sm-4 label">カテゴリ:</label>
+          <div class="col-sm-8 form-inline">
             {{ form.s_category }}
         </div>
         </div>
 
         <div class="row">
-          <label for="money" class="col-sm-2 label">金額:</label>
-          <div class="col-sm-10 form-inline">
+          <label for="money" class="col-sm-4 label">金額:</label>
+          <div class="col-sm-8 form-inline">
             {{ form.money }}
             {{ form.money.errors }}
         </div>
         </div>
 
         <div class="row">
-          <label for="day" class="col-sm-2 label">日付:</label>
-          <div class='col-sm-10 form-inline'>
+          <label for="day" class="col-sm-4 label">日付:</label>
+          <div class='col-sm-8 form-inline'>
             {{ form.date }}
           </div>
         </div>
       
       <div class="row">
-        <label for="note" class="col-sm-2 label">メモ:</label>
-        <div class="col-sm-10 form-inline">
+        <label for="note" class="col-sm-4 label">メモ:</label>
+        <div class="col-sm-8 form-inline">
           {{ form.note }}
       </div>
       </div>
-      <button class="btn btn-info col-sm-2" type="submit" role="button">登録</button><br>
-      <a href="{% url 'moneybook:history' %}">履歴へ戻る</a>
+      <button class="btn btn-info col-sm-3" type="submit" role="button">登録</button>
+      <a href="{% url 'moneybook:history' %}" style="text-align: right;">履歴へ戻る</a>
       {% if messages %}
 	      <div class="messages_ul">
 		    {% for message in messages %}

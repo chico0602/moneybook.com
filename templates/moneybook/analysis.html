@@ -7,13 +7,18 @@
 {% block title %}分析{% endblock %}
 
 {% block content %}
-<div class="container" style='margin:3rem;'>
+<div class="container" style='margin:3.5rem; text-align: center;'>
     <div class="chart_container">
         <canvas id='PieChart' style= "height:70vh; width:70vw;"></canvas>
     </div>
-    <div class="container-fluid analysis_cate">
+    <div class="container-fluid analysis_cate" style='margin:3rem;'>
+    <div style='font-size: 1.2rem;'>
     <p>支出：￥{{total}}</p>
-   
+    {% for item, s_category_total in s_category_num.items %}
+    <p>{{item}}：￥{{s_category_total}}</p>
+    {% endfor %}
+    </div>
+    </div>
     </div>
     <style>
         .chart_container {
@@ -33,7 +38,7 @@
                      ],
                     
                      [
-                     {% for key, value in s_category_ratio.items%}
+                     {% for key, value in s_category_ratio.items %}
                         {{value}},
                      {% endfor %}
                      ]]
@@ -60,7 +65,7 @@
            pocision: "top",       // 表示位置
            fontSize: 30,          // フォントサイズ
            fontColor: "black",    // 文字の色
-           text: "月々の割合" // タイトル文字列
+           text: "カテゴリの割合" // タイトル文字列
          },
         }
         });

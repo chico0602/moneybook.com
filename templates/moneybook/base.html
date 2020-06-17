@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'moneybook/style.css' %}">
+    <link rel="stylesheet" href="{% static 'moneybook/login.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -16,14 +18,20 @@
 <header>
 　<nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: #F0FFF0;">
   <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'moneybook:history' %}">家計簿</a>
+    <a class="navbar-brand" href="{% url 'moneybook:history' %}"><img src="{% static "img/moneybook-logo.png" %}" alt="">Moneybook</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
       <ul class="navbar-nav">
+        <li class="nav-item user">
+        {% if user.id  %} {{ user.username }}さん {% endif %}
+        </li>
         <li class="nav-item active">
-          <a class="nav-link" href="{% url 'moneybook:input' %}">入力<span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="{% url 'moneybook:history' %}">履歴<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'moneybook:input' %}">入力</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'moneybook:analysis' %}">月別分析</a>
@@ -32,7 +40,7 @@
           <a class="nav-link" href="{% url 'moneybook:total_analysis' %}">総合分析</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'moneybook:analysis' %}">ログアウト</a>
+          <a class="nav-link" href="{% url 'accounts:logout' %}">ログアウト</a>
         </li>
       </ul>
     </div>
@@ -43,4 +51,26 @@
     {% block content %}{% endblock %}
 
 </body>
+<style>
+body {
+  font-family: 'Hiragino Kaku Gothic Pro','ヒラギノ角ゴ Pro W3','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
+}
+.navbar-brand {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.5rem;
+}
+li {
+  margin-top: 0.5rem;
+}
+.user {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
+  margin-top: 1.0rem;
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
+  border-bottom: dashed 2px #333 ;
+  padding-bottom: 0.5rem;
+}
+
+</style>
 </html>

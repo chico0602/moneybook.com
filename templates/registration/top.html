@@ -1,0 +1,13 @@
+{% extends 'moneybook/base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+{% block title %}トップ{% endblock %}
+
+{% block content %}
+<p>top</p>
+<a href="{% url 'accounts:login' %}">ログイン</a>
+<a href="{% url 'accounts:create' %}">会員登録</a>
+{% endblock %}

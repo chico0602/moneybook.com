@@ -20,10 +20,13 @@ from django.urls import path, include
 from django.conf.urls import url
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('accounts.urls')),
     path('', include('moneybook.urls')),
-    path('user/', include(('django.contrib.auth.urls', 'registration'),namespace='registration')),
-    path('oauth/', include('social_django.urls', namespace = 'social')),
+    path('accounts/', include('django.contrib.auth.urls')),
+   # path('user/', include(('django.contrib.auth.urls', 'registration'),namespace='registration')),
+   # path('oauth/', include('social_django.urls', namespace = 'social')),
 ]
 

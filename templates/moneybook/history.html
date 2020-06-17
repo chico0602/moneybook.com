@@ -1,20 +1,17 @@
 {% extends 'moneybook/base.html' %}
-{% load static %}
-{% load bootstrap4 %}
-{% bootstrap_css %}
-{% bootstrap_javascript jquery='full' %}
+
 
 {% block title %}履歴{% endblock %}
 
 {% block content %}
-<div class="container" style='margin:3rem;'>
+<div class="container" style='margin:3.5rem;'>
     <div class="messages_ul">
         {% for message in messages %}
             <p class="alert{% if message.tags %} alert-{{ message.tags }}{% endif %} alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ message }}</p>
         {% endfor %}
     </div>
     
-    <h1>履歴</h1>
+    <h1 style="text-align: center;">履歴</h1>
     {% for spending in spending_list %}
     <div class="row">
         <div class="col-sm-2 col-1 label">{{ spending.date|date:"n/j" }}</div>

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -31,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts.apps.AccountsConfig',
     'moneybook.apps.MoneybookConfig',
     'social_django',
     'bootstrap_datepicker_plus',
@@ -52,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'social_django.middleware.SocialAuthExceptionMiddleware',
+    'global_login_required.GlobalLoginRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'project.urls'
@@ -77,6 +80,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'project.wsgi.application'
 
 AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
     'social_core.backends.open_id.OpenIdAuth',
     'social_core.backends.google.GoogleOpenId',
     'social_core.backends.google.GoogleOAuth2',
@@ -138,15 +142,20 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
-#ログイン
-LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = '/'
+# ログイン
+LOGIN_URL = '/login'
+LOGIN_REDIRECT_URL = '/history'
+LOGOUT_REDIRECT_URL = '/top'
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '#####'  # クライアントID
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '######'  # クライアント シークレット
 
-from django.contrib.messages import constants as messages
 
 MESSAGE_TAGS = {
     messages.DEBUG: 'dark',
     messages.ERROR: 'danger',
 }
+
+PUBLIC_PATHS = [
+    '/login/',
+    '/top/',
+]

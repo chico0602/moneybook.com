@@ -4,6 +4,8 @@ from django.urls import reverse_lazy
 from django.db import models
 from django.db.models import Sum
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from .models import S_Category, Spending
 from .forms import SpendingCreateForm
 import calendar
@@ -11,13 +13,8 @@ import calendar
 
 # Create your views here
 
-# ログイン
-def index(request):
-    return render(request, 'moneybook/index.html')
-
-
 # 記録
-class InputCreate(generic.CreateView):
+class InputCreate(generic.CreateView, LoginRequiredMixin):
 
     form_class = SpendingCreateForm
     template_name = "moneybook/input.html"
@@ -34,12 +31,12 @@ class InputCreate(generic.CreateView):
 
 # 更新削除
 # 支出
-class SpendingDetail(generic.DetailView):
+class SpendingDetail(generic.DetailView, LoginRequiredMixin):
     model = Spending
     template_name = "moneybook/s_detail.html"
 
 
-class SpendingUpdate(generic.UpdateView):
+class SpendingUpdate(generic.UpdateView, LoginRequiredMixin):
     model = Spending
     form_class = SpendingCreateForm
     template_name = "moneybook/input.html"
@@ -54,7 +51,7 @@ class SpendingUpdate(generic.UpdateView):
         return super().form_invalid(form)
 
 
-class SpendingDelete(generic.DeleteView):
+class SpendingDelete(generic.DeleteView, LoginRequiredMixin):
     model = Spending
     success_url = reverse_lazy('moneybook:history')
 
@@ -65,13 +62,14 @@ class SpendingDelete(generic.DeleteView):
 
 
 # 履歴
-class InputList(generic.ListView):
+class InputList(generic.ListView, LoginRequiredMixin):
     model = Spending
     ordering = '-date'
     template_name = "moneybook/history.html"
 
 
 # 分析
+@login_required
 def show_circle_grahp(request):
 
     spending_data = Spending.objects.all()
@@ -88,17 +86,17 @@ def show_circle_grahp(request):
         s_category_list.append(item.s_category_name)
 
     s_category_ratio = {}
-    s_category_num = []
+    s_category_num = {}
     for i, item in enumerate(s_category_list):
         s_category_total = Spending.objects.filter(s_category__s_category_name=s_category_list[i]).aggregate(sum=models.Sum('money'))['sum']
 
         if s_category_total != None:
             ratio = int((s_category_total / total) * 100)
-            s_category_num.append(s_category_total)
+            s_category_num[item]= s_category_total
             s_category_ratio[item] = ratio
         else:
             ratio = 0
-            s_category_num.append(0)
+            s_category_num[item] = ratio
             s_category_ratio[item] = ratio
 
     return render(request, 'moneybook/analysis.html', {
@@ -109,6 +107,7 @@ def show_circle_grahp(request):
 
 
 # 総分析
+
 def show_total_grahp(request):
     spending_data = Spending.objects.all()
 
@@ -143,10 +142,10 @@ def show_total_grahp(request):
             s_category = S_Category.objects.get(pk=category_total[j]['s_category'])
             monthly_sum_data.append([x_label[i], s_category.s_category_name, money])
 
-    # 折れ線グラフカラー
+    # グラフカラー
     border_color_list = ['254,97,132,0.8','54,164,235,0.8','0,255,65,0.8','255,241,15,0.8',\
-                        '255,94,25,0.8','84,77,203,0.8','204,153,50,0.8','214,216,165,0.8',\
-                        '33,30,45,0.8','52,38,89,0.8']
+                      '255,94,25,0.8','84,77,203,0.8','204,153,50,0.8','214,216,165,0.8',\
+                      '33,30,45,0.8', '52,38,89,0.8']
     border_color = []
     for x, y in zip(category_list, border_color_list):
         border_color.append([x, y])

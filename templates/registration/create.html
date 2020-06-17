@@ -1,0 +1,29 @@
+{% extends 'moneybook/base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+
+
+{% block content %}
+<div class = "container" style='margin:3.5rem;'>
+	<div class="wrapper">
+		<form action="" method="post" name="signup_Form" class="form-signin">       
+		    <h3 class="form-signin-heading">Welcome! <br> Please Sign up</h3>
+            <hr class="colorgraph"><br>
+            {% csrf_token %}
+			 <label>ユーザーID</label>
+            {{ form.username }}
+            {{ form.username.errors }}
+            <label>パスワード</label>
+            {{ form.password1 }}
+            {{ form.password1.errors }}
+            <label>パスワード(確認)</label>
+            {{ form.password2 }}
+            {{ form.password2.errors }}
+			  <button class="btn btn-lg btn-primary btn-block" type="Submit">登録</button>  			
+		</form>			
+	</div>
+</div>
+{% endblock content %}
