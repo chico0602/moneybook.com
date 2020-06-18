@@ -7,7 +7,31 @@
 {% block title %}トップ{% endblock %}
 
 {% block content %}
-<p>top</p>
-<a href="{% url 'accounts:login' %}">ログイン</a>
-<a href="{% url 'accounts:create' %}">会員登録</a>
+<div class="jumbotron">
+    <div class="container">
+    <div class="top">
+      <h1>Moneybook</h1>
+      <p>日々の出費を記録してお金の管理をしていきましょう</p>
+      <div style="margin-top: 10vh;">
+      <a class="btn btn-outline-primary btn-lg" href="{% url 'accounts:login' %}" role="button">ログイン »</a>
+      <a class="btn btn-outline-danger btn-lg" href="{% url 'accounts:create' %}" role="button">会員登録 »</a>
+    </div>
+    </div>
+    </div>
+  </div>
+<style>
+.jumbotron {
+    background:url(../static/img/main.jpg) center no-repeat; 
+    background-size: cover;
+    height: 100vh;
+    }
+.top {
+    text-align: center;
+    color: #8B4513;
+    margin-top: 30vh;
+}
+h1 {
+    font-family: 'Quicksand', sans-serif;
+}
+</style>
 {% endblock %}

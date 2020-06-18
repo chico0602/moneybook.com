@@ -7,7 +7,7 @@
 {% block title %}入力画面{% endblock %}
 
 {% block content %}
-<div class="container" style='margin:3.5rem;'>
+<div class="container mx-auto">
   <!--支出-->
     <div id="spending_form" class="tab-pane active">
       <form class="form" action=" " method="POST">
@@ -50,7 +50,8 @@
           {{ form.note }}
       </div>
       </div>
-      <button class="btn btn-info col-sm-3" type="submit" role="button">登録</button>
+      <div style="text-align: center; margin-top: 3rem;">
+      <button class="btn btn-info col-sm-2" type="submit" role="button" style="margin-right: 2rem;">登録</button>
       <a href="{% url 'moneybook:history' %}" style="text-align: right;">履歴へ戻る</a>
       {% if messages %}
 	      <div class="messages_ul">
@@ -60,6 +61,18 @@
         </div>
     {% endif %}
       </form>
+    </div>
   </div>
 </div>
+<style>
+  .container {
+      padding: 3rem 1em;
+      margin: 5rem 0;
+      background: #fdffff;
+      border: dashed 2px #bdabab;
+      box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);/*影*/
+      border-radius: 10px;
+      max-width: 100vh;
+    }
+</style>
 {% endblock content %}

@@ -54,7 +54,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'social_django.middleware.SocialAuthExceptionMiddleware',
-    'global_login_required.GlobalLoginRequiredMiddleware',
+    'global_login_required.GlobalLoginRequiredMiddleware', #追加
 ]
 
 ROOT_URLCONF = 'project.urls'
@@ -157,5 +157,6 @@ MESSAGE_TAGS = {
 
 PUBLIC_PATHS = [
     '/login/',
+    '/create/',
     '/top/',
 ]

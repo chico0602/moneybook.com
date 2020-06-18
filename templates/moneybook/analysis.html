@@ -7,11 +7,11 @@
 {% block title %}分析{% endblock %}
 
 {% block content %}
-<div class="container" style='margin:3.5rem; text-align: center;'>
-    <div class="chart_container">
-        <canvas id='PieChart' style= "height:70vh; width:70vw;"></canvas>
+<div class="container mx-auto">
+    <div class="chart_container mx-auto">
+        <canvas id='PieChart' style= "position: relative; height:70vh; width: 50vw"></canvas>
     </div>
-    <div class="container-fluid analysis_cate" style='margin:3rem;'>
+    <div class="analysis_cate">
     <div style='font-size: 1.2rem;'>
     <p>支出：￥{{total}}</p>
     {% for item, s_category_total in s_category_num.items %}
@@ -20,13 +20,6 @@
     </div>
     </div>
     </div>
-    <style>
-        .chart_container {
-          width: 640px;
-          margin: auto;
-        }
-      }
-    </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <script>
     var ctx = document.getElementById('PieChart').getContext('2d');
@@ -71,4 +64,22 @@
         });
     </script>
 </div>
+<style>
+  .container {
+      padding: 3rem 1em;
+      margin: 5rem 0;
+      background: #fdffff;
+      border: dashed 2px #bdabab;
+      box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);/*影*/
+      border-radius: 10px;
+      max-width: 100vh;
+    }
+
+    .chart_container {
+        width: 60vw;
+        margin: auto;
+        padding-right: 0;
+    }
+    
+</style>
 {% endblock content %}

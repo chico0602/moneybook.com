@@ -4,7 +4,7 @@
 {% block title %}履歴{% endblock %}
 
 {% block content %}
-<div class="container" style='margin:3.5rem;'>
+<div class="container mx-auto">
     <div class="messages_ul">
         {% for message in messages %}
             <p class="alert{% if message.tags %} alert-{{ message.tags }}{% endif %} alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ message }}</p>
@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col-sm-2 col-1 label">{{ spending.date|date:"n/j" }}</div>
         <div class="col-sm-10 col-12">
-            <div class="card border-primary" style="padding: 0.5rem 1rem; position:relative;">
+            <div class="card border-primary" style="padding: 0.5rem 1rem; margin-bottom: 1.5rem; position:relative;">
             <p class="card-text">￥{{ spending.money }}</p>
             <p class="card-text">カテゴリ:{{ spending.s_category}} 
                 &nbsp;メモ:{{ spending.note }}</p>
@@ -26,5 +26,21 @@
     </div>
     {% endfor %}    
 </div> 
-
+<style>
+.container {
+    padding: 3rem 1em;
+    margin: 5rem 0;
+    background: #fdffff;
+    border: dashed 2px #bdabab;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);/*影*/
+    border-radius: 10px;
+    max-width: 100vh;
+  }
+h1 {
+    margin-bottom: 2rem;
+}
+.card {
+  width: 70%;
+}
+</style>
 {% endblock content %}
