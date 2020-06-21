@@ -25,7 +25,7 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item user">
-          <a class="nav-link" href="{% url 'accounts:user_detail' user.pk %}">{% if user.id  %} {{ user.username }}さん {% endif %}</a>
+          <a class="nav-link" href="#">{% if user.id  %} {{ user.username }}さん {% endif %}</a>
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="{% url 'moneybook:history' %}">履歴<span class="sr-only">(current)</span></a>
@@ -55,7 +55,6 @@
 <style>
 body {
   font-family: 'Hiragino Kaku Gothic Pro','ヒラギノ角ゴ Pro W3','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
-  background:url(../static/img/background.jpg) center no-repeat; 
 }
 .navbar-brand {
   font-family: 'Quicksand', sans-serif;

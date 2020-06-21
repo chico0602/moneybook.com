@@ -1,4 +1,4 @@
-{% extends 'moneybook/base.html' %}
+{% extends 'registration/base.html' %}
 {% load static %}
 {% load bootstrap4 %}
 {% bootstrap_css %}
@@ -8,22 +8,26 @@
 
 {% block content %}
 <div class="jumbotron">
-<div class = "container" style='margin:3.5rem;'>
+<div class = "container" style='margin:3rem;'>
 	<div class="wrapper">
 		<form action="" method="post" name="signup_Form" class="form-signin">       
 		    <h3 class="form-signin-heading">Welcome! <br> Please Sign up</h3>
             <hr class="colorgraph"><br>
             {% csrf_token %}
-			 <label>ユーザーID</label>
-            {{ form.username }}
-            {{ form.username.errors }}
-            <label>パスワード</label>
-            {{ form.password1 }}
-            {{ form.password1.errors }}
-            <label>パスワード(確認)</label>
-            {{ form.password2 }}
-            {{ form.password2.errors }}
-			  <button class="btn btn-lg btn-primary btn-block" type="Submit">登録</button>  			
+            {% for field in form %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
+                {{ field }}
+                {{ field.errors }}
+            </div>
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+			<div class="alert alert-danger" role="alert">
+			<p>{{ error }}</p>
+		  	</div>
+			{% endfor %}
+            <button class="btn btn-lg btn-primary btn-block" type="Submit">登録</button>
+			
 		</form>			
 	</div>
 </div>

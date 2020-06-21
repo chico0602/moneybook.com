@@ -1,4 +1,4 @@
-{% extends 'moneybook/base.html' %}
+{% extends 'registration/base.html' %}
 {% load static %}
 {% load bootstrap4 %}
 {% bootstrap_css %}
@@ -15,19 +15,20 @@
 		    <h3 class="form-signin-heading">Welcome Back! Please Sign In</h3>
 			<hr class="colorgraph"><br>
 			{% csrf_token %}
-			<label>ユーザーID</label>
-			{{ form.username }}
-			{{ form.username.errors }}
-			<label>パスワード</label>
-			{{ form.password }}
-			{{ form.password.errors }}
-
+			{% for field in form %}
+			<div class="form-group">
+			<label for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
+				{{ field }}
+				{{ field.errors }}
+			{% endfor %}
+			</div>
 			{% for error in form.non_field_errors %}
 			<div class="alert alert-danger" role="alert">
 			<p>{{ error }}</p>
 		  	</div>
 			{% endfor %}
-			<button class="btn btn-lg btn-primary btn-block"  name="Submit" value="Login" type="Submit">Login</button>  			
+			<button class="btn btn-lg btn-primary btn-block"  name="Submit" value="Login" type="Submit">Login</button> 
+			<a href="#" class="btn btn-outline-info btn-lg btn-block">{{ easy_login }}</a>			
 			<a href="{% url 'accounts:create' %}">→会員登録</a>
 		</form>			
 	</div>
