@@ -14,6 +14,12 @@ from .forms import (LoginForm, UserCreateForm, UserUpdateForm)
 User = get_user_model()
 
 
+def guestlogin(request):
+    guest_user = User.objects.get(user_name='guest')
+    login(request, guest_user, backend='django.contrib.auth.backends.ModelBackend')
+    return render(request, 'moneybook/history.html')
+
+
 def top(request):
     return render(request, 'registration/top.html')
 

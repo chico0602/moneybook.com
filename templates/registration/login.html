@@ -28,7 +28,7 @@
 		  	</div>
 			{% endfor %}
 			<button class="btn btn-lg btn-primary btn-block"  name="Submit" value="Login" type="Submit">Login</button> 
-			<a href="#" class="btn btn-outline-info btn-lg btn-block">{{ easy_login }}</a>			
+			<a href="{% url 'accounts:test_login' %}" class="btn btn-outline-info btn-lg btn-block">お試しログイン</a>			
 			<a href="{% url 'accounts:create' %}">→会員登録</a>
 		</form>			
 	</div>
