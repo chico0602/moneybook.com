@@ -7,32 +7,29 @@
 
 
 {% block content %}
-<div class="jumbotron">
-<div class = "container" style="margin:3rem;">
-
-    <div class="done">
-    <h3 class="form-signin-heading">ユーザー詳細情報</h3>
-	<hr class="colorgraph"><br>
+<div class="container mx-auto">
+    <h1 style="text-align: center;">アカウント詳細</h1>
+    <div style="text-align: center;">
         <label>メールアドレス</label>
         <p>{{ user.email }}</p><br>
         <label>ユーザー名</label>
         <p>{{ user.user_name }}</p>
-        <a class="btn btn-info col-sm-3" href="{% url 'accounts:user_update' user.pk %}" role="button">更新</a>
-        
-	</div>
-</div>
+        <a class="btn btn-info col-sm-3" style="margin-top: 2rem;" href="{% url 'accounts:user_update' user.pk %}" role="button">更新</a>
+    </div>    
 </div>
 <style>
-.jumbotron {
-    background:url(../static/img/background.jpg) center no-repeat; 
-    background-size: cover;
-    height: 100vh;
-    }
-label {
- font-weight: bold;
+.container {
+    padding: 3rem 1em;
+    margin: 5rem 0;
+    background: #fdffff;
+    border: dashed 2px #bdabab;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);/*影*/
+    border-radius: 10px;
+    max-width: 100vh;
 }
-a {
- margin-top: 2rem;
+h1 {
+    margin-bottom: 2rem;
+    font-size: 2rem;
 }
 </style>
 

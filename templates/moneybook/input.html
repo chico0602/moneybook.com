@@ -4,6 +4,19 @@
 {% bootstrap_css %}
 {% bootstrap_javascript jquery='full' %}
 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script>
+  $(function () {
+      // 日付は、年-月-日 の形式でお願いする。
+      let dateFormat = 'yy-mm-dd';
+      $('#date').datepicker({
+          dateFormat: dateFormat
+      });
+  });
+</script>
+
 {% block title %}入力画面{% endblock %}
 
 {% block content %}
@@ -11,8 +24,15 @@
   <!--支出-->
     <div id="spending_form" class="tab-pane active">
       <form class="form" action=" " method="POST">
+        {% if messages %}
+	      <div class="messages_ul">
+		    {% for message in messages %}
+			    <p class="alert{% if message.tags %} alert-{{ message.tags }}{% endif %} alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ message }}</p>
+		    {% endfor %}
+        </div>
+        {% endif %}
         <h1 class="title" style="text-align: center;">支出を入力</h1>
-       
+        
         {{ form.non_field_errors }}
         {% csrf_token %}
         <div class="row">
@@ -38,7 +58,7 @@
         </div>
 
         <div class="row">
-          <label for="day" class="col-sm-4 label">日付:</label>
+          <label for="day" id="day" class="col-sm-4 label">日付:</label>
           <div class='col-sm-8 form-inline'>
             {{ form.date }}
           </div>
@@ -53,13 +73,7 @@
       <div style="text-align: center; margin-top: 3rem;">
       <button class="btn btn-info col-sm-2" type="submit" role="button" style="margin-right: 2rem;">登録</button>
       <a href="{% url 'moneybook:history' %}" style="text-align: right;">履歴へ戻る</a>
-      {% if messages %}
-	      <div class="messages_ul">
-		    {% for message in messages %}
-			    <p class="alert{% if message.tags %} alert-{{ message.tags }}{% endif %} alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ message }}</p>
-		    {% endfor %}
-        </div>
-    {% endif %}
+      
       </form>
     </div>
   </div>
